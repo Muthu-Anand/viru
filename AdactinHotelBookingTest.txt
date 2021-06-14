@@ -1,0 +1,72 @@
+package javaBaseLibrary;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.server.handler.SendKeys;
+
+public class AdactinHotelTest extends BaseClass {
+	
+	public static void main(String[] args) throws InterruptedException {
+	
+	  //login page
+      browserLaunch("chrome");
+      pageLoadWait(20);
+      implicitTimeOut(30);
+      getUrl("https://adactinhotelapp.com/index.php");
+      WebElement userName = driver.findElement(By.id("username"));
+      sendKeys(userName, "arun3297");
+      WebElement password = driver.findElement(By.id("password"));
+      sendKeys(password, "Muthu@1234");
+      WebElement loginBtn = driver.findElement(By.name("login"));
+      click(loginBtn);
+      
+      //search page
+      WebElement  location = driver.findElement(By.name("location"));
+      select(location, "text", "London");
+      WebElement hotels = driver.findElement(By.name("hotels"));
+      select(hotels, "value", "Hotel Creek");
+      WebElement roomType = driver.findElement(By.xpath("//select[@name='room_type']"));
+      select(roomType, "index", "1");
+      WebElement roomNo = driver.findElement(By.xpath("//select[@name='room_nos']"));
+      select(roomNo, "index", "1");
+      WebElement dateIn = driver.findElement(By.name("datepick_in"));
+      sendKeys(dateIn, "25/04/2021");
+      WebElement dateOut = driver.findElement(By.id("datepick_out"));
+      sendKeys(dateOut, "28/04/2021");
+      WebElement adult_room = driver.findElement(By.name("adult_room"));
+      select(adult_room, "text", "1 - One");
+      WebElement searchBtn = driver.findElement(By.xpath("//input[@name='Submit']"));
+      click(searchBtn);
+      
+      //select hotel
+      WebElement selectRadioBtn = driver.findElement(By.xpath("(//tbody)[5]/tr[2]/td[1]/input"));
+      click(selectRadioBtn);
+      WebElement continueBtn = driver.findElement(By.name("continue"));
+      click(continueBtn);
+      
+      //book a hotel
+      scrollUpAndDown("down");
+      WebElement first_name = driver.findElement(By.name("first_name"));
+      sendKeys(first_name, "vignesh");
+      WebElement last_name = driver.findElement(By.name("last_name"));
+      sendKeys(last_name, "Ram");
+      WebElement address = driver.findElement(By.name("address"));
+      sendKeys(address, "No 11 ice keni tamil nadu");
+      WebElement cc_num = driver.findElement(By.name("cc_num"));
+      sendKeys(cc_num, "4848040490490930");
+      WebElement cc_type = driver.findElement(By.name("cc_type"));
+      select(cc_type, "index", "3");
+      WebElement cc_exp_month = driver.findElement(By.name("cc_exp_month"));
+      select(cc_exp_month, "text", "January");
+      WebElement cc_exp_year = driver.findElement(By.name("cc_exp_year"));
+      select(cc_exp_year, "value", "2022");
+      WebElement cc_cvv = driver.findElement(By.name("cc_cvv"));
+      sendKeys(cc_cvv, "105");
+      WebElement bookNowBtn = driver.findElement(By.name("book_now"));
+      click(bookNowBtn);
+      Thread.sleep(3000);
+      close();
+      
+    }
+
+}
